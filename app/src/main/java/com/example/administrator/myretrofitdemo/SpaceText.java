@@ -10,31 +10,36 @@ public class SpaceText implements TextWatcher {
     private EditText etSpace;
     int beforeTextLength = 0;
     int onTextLength = 0;
+    private  String realStr = "";
 
-    public SpaceText(EditText etSpace){
+    public SpaceText(EditText etSpace) {
         super();
         this.etSpace = etSpace;
     }
 
     public String removeAllSpace(String str) {
-        String tmpstr=str.replace(" ","");
+        String tmpstr = str.replace(" ", "");
         return tmpstr;
+    }
+    public  String getRealStr() {
+        return realStr;
     }
 
     @Override
     public void afterTextChanged(Editable s) {
         // TODO Auto-generated method stub
         String str = etSpace.getText().toString();
-        Log.d(TAG, "mEditText = " + removeAllSpace(str) + ".");
+        realStr = removeAllSpace(str);
+        Log.e(TAG, "mEditText = " + removeAllSpace(str) + ".");
         onTextLength = str.length();
-        Log.d(TAG, "beforeLen = " + beforeTextLength + "afterLen = " + onTextLength);
+        Log.e(TAG, "beforeLen = " + beforeTextLength + "afterLen = " + onTextLength);
         if (onTextLength > beforeTextLength) {
             if (str.length() == 5 || str.length() == 10 || str.length() == 15 || str.length() == 20) {
                 etSpace.setText(new StringBuffer(str).insert(
                         str.length() - 1, " ").toString());
                 etSpace.setSelection(etSpace.getText()
                         .length());
-                Log.d(TAG, "selection = " +etSpace.getText()
+                Log.e(TAG, "selection = " + etSpace.getText()
                         .length());
             }
         } else {
@@ -43,7 +48,7 @@ public class SpaceText implements TextWatcher {
                         onTextLength - 1, onTextLength).toString());
                 etSpace.setSelection(etSpace.getText()
                         .length());
-                Log.d(TAG, "else start space");
+                Log.e(TAG, "else start space");
             }
         }
     }
