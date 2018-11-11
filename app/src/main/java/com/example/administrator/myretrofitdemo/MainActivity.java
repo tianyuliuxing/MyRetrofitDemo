@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // setContentView(R.layout.activity_main);
 
         String nam = "郑州分行/建设路支行";
         nam = nam.replaceAll("/", "\\.");
